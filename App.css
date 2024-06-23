@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+
+.chat-window {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f9f9f9;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-input {
+  display: flex;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-bottom-left-radius: 10px;
+}
+
+.chat-input button {
+  padding: 10px;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}

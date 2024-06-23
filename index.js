@@ -1,44 +1,17 @@
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const app = express();
-const server = http.createServer(app);
-const io = socketIo(server, {
-    cors: {
-      origin: ['http://localhost:3000', 'http://127.0.0.1:5500'], // Allow both origins
-      methods: ['GET', 'POST']
-    }
-  });
-  
-  app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:5500'], // Allow both origins
-    methods: ['GET', 'POST']
-  }));
-app.use(bodyParser.json());
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-app.post('/api/sendMessage', (req, res) => {
-  const { message } = req.body;
-  io.emit('message', { sender: 'User', message });
-  res.json({ reply: 'This is an automated reply from the admin.' }); // You can replace this with actual logic
-});
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-
-  socket.on('message', (msg) => {
-    console.log(msg, 32)
-    io.emit('message', msg);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
-
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
